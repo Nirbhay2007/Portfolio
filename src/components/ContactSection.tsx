@@ -20,16 +20,45 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. I'll get back to you soon!",
+
+    try {
+      const response = await fetch('https://formspree.io/f/xkgbpwpp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for your message. I'll get back to you soon!",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to send message');
+      }
+    } catch (error: unknown) {
+      let message = "Something went wrong. Please try again later.";
+      if (error instanceof Error) {
+        message = error.message;
+      }
+      toast({
+        title: "Error",
+        description: message,
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -43,26 +72,26 @@ const ContactSection = () => {
     {
       icon: '📧',
       label: 'Email',
-      value: 'alex@example.com',
-      link: 'mailto:alex@example.com'
+      value: 'nirbhaygarg11@gmail.com',
+      link: 'mailto:nirbhaygarg11@gmail.com'
     },
     {
       icon: '📱',
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      value: 'Comming Soon...',
+      link: 'tel:+91'
     },
     {
       icon: '📍',
       label: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Jalandhar,India',
       link: '#'
     },
     {
       icon: '💼',
       label: 'LinkedIn',
-      value: '/in/alexjohnson',
-      link: 'https://linkedin.com/in/alexjohnson'
+      value: 'Nirbhay Garg',
+      link: 'https://linkedin.com/in/nirbhaygarg'
     }
   ];
 
@@ -108,13 +137,13 @@ const ContactSection = () => {
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            Let's Create Something <span className="gradient-text">Amazing</span>
+            <span className="gradient-text">Open to Learning, Growing, and Creating.</span>
           </motion.h2>
           <motion.p
             variants={itemVariants}
             className="text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            Ready to bring your ideas to life? Let's discuss your project and create something extraordinary together.
+            Currently pursuing Data Science and AI/ML. I’m open to internships, collaborations, or learning opportunities — let’s connect!
           </motion.p>
         </motion.div>
 
@@ -194,20 +223,24 @@ const ContactSection = () => {
             <div>
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
               <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <motion.a
-                    key={index}
-                    href={info.link}
-                    whileHover={{ scale: 1.02, x: 10 }}
-                    className="flex items-center space-x-4 p-4 glass-card rounded-xl cursor-hover group hover:border-primary/30 transition-all duration-300"
-                  >
-                    <div className="text-2xl">{info.icon}</div>
-                    <div>
-                      <div className="font-medium text-muted-foreground text-sm">{info.label}</div>
-                      <div className="font-semibold group-hover:text-primary transition-colors">{info.value}</div>
-                    </div>
-                  </motion.a>
-                ))}
+                {contactInfo.map((info, index) => {
+                  const isMailto = info.link.startsWith('mailto:');
+                  return (
+                    <motion.a
+                      key={index}
+                      href={info.link}
+                      {...(!isMailto ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      whileHover={{ scale: 1.02, x: 10 }}
+                      className="flex items-center space-x-4 p-4 glass-card rounded-xl cursor-hover group hover:border-primary/30 transition-all duration-300"
+                    >
+                      <div className="text-2xl">{info.icon}</div>
+                      <div>
+                        <div className="font-medium text-muted-foreground text-sm">{info.label}</div>
+                        <div className="font-semibold group-hover:text-primary transition-colors">{info.value}</div>
+                      </div>
+                    </motion.a>
+                  );
+                })}
               </div>
             </div>
 
@@ -216,10 +249,10 @@ const ContactSection = () => {
               <h4 className="text-xl font-bold mb-4">Follow Me</h4>
               <div className="flex space-x-4">
                 {[
-                  { name: 'GitHub', icon: '🐙', link: '#' },
-                  { name: 'LinkedIn', icon: '💼', link: '#' },
-                  { name: 'Twitter', icon: '🐦', link: '#' },
-                  { name: 'Instagram', icon: '📷', link: '#' }
+                  { name: 'GitHub', icon: '🐙', link: 'https://github.com/Nirbhay2007/' },
+                  { name: 'LinkedIn', icon: '💼', link: 'www.linkedin.com/in/nirbhaygarg' },
+                  { name: 'Twitter', icon: '🐦', link: 'https://x.com/Nirbhay1030' },
+                  { name: 'Instagram', icon: '📷', link: 'https://www.instagram.com/nirbhaygarg_' }
                 ].map((social, index) => (
                   <motion.a
                     key={index}
@@ -241,10 +274,10 @@ const ContactSection = () => {
             >
               <div className="flex items-center space-x-3 mb-2">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="font-semibold text-green-400">Available for new projects</span>
+                <span className="font-semibold text-green-400">Available for Internships</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Currently accepting new client projects and collaborations. Let's build something amazing together!
+                Always exploring new ideas and opportunities to grow — happy to connect and collaborate!
               </p>
             </motion.div>
           </motion.div>
@@ -258,7 +291,7 @@ const ContactSection = () => {
           className="mt-20 pt-8 border-t border-white/10 text-center"
         >
           <p className="text-muted-foreground">
-            © 2024 Alex Johnson. Crafted with ❤️ and cutting-edge technology.
+            © 2025 Nirbhay Garg. All rights reserved.
           </p>
         </motion.footer>
       </div>

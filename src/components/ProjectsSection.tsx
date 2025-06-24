@@ -7,41 +7,23 @@ import { Button } from '@/components/ui/button';
 const ProjectsSection = () => {
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A modern, scalable e-commerce solution with advanced features including real-time inventory, AI-powered recommendations, and seamless payment integration.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop',
-      tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      github: '#',
-      live: '#',
-      featured: true
+      title: 'Data Analytics Job Simulation',
+      description: 'Completed a virtual job simulation focusing on data analysis, visualization, and insights using Python, Excel, and Tableau. Gained practical exposure to interpreting real-world business datasets and delivering data-driven recommendations.',
+      image: 'Data.jpg',
+      tags: ['Python', 'Tableau', 'Excel'],
+      featured: true,
+      live:'https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_KvppNfCoPoMo8v48B_1750652575184_completion_certificate.pdf'
     },
+
     {
-      title: 'Task Management App',
-      description: 'Collaborative project management tool with real-time updates, team communication, and advanced analytics dashboard.',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop',
-      tags: ['Vue.js', 'Express', 'MongoDB', 'Socket.io'],
-      github: '#',
-      live: '#',
-      featured: false
+      title: 'Technology Job Simulation',
+      description: 'Engaged in a simulated tech internship solving industry tasks using Python and Replit. Practiced software logic, documentation, and communication workflows to develop foundational experience in technical roles.',
+      image: 'Technology.jpg',
+      tags: ['Python', 'Replit', 'React'],
+      featured: true,
+      live:'https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_KvppNfCoPoMo8v48B_1750662314696_completion_certificate.pdf'
     },
-    {
-      title: 'AI-Powered Analytics',
-      description: 'Machine learning dashboard for business intelligence with predictive analytics and automated reporting.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
-      tags: ['Python', 'TensorFlow', 'React', 'D3.js'],
-      github: '#',
-      live: '#',
-      featured: true
-    },
-    {
-      title: 'Social Media Platform',
-      description: 'Full-featured social networking platform with real-time messaging, content sharing, and advanced privacy controls.',
-      image: 'https://images.unsplash.com/photo-1611262588024-d12430b98920?w=600&h=400&fit=crop',
-      tags: ['React Native', 'GraphQL', 'AWS', 'Redis'],
-      github: '#',
-      live: '#',
-      featured: false
-    }
+
   ];
 
   const containerVariants = {
@@ -86,13 +68,13 @@ const ProjectsSection = () => {
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            Featured <span className="gradient-text">Projects</span>
+            Featured <span className="gradient-text">Certificates</span>
           </motion.h2>
           <motion.p
             variants={itemVariants}
             className="text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            A showcase of my latest work, demonstrating expertise in modern web technologies and innovative solutions
+            A curated selection of certifications and job simulations I've completed, showcasing my commitment to continuous learning and foundational experience in data and technology.
           </motion.p>
         </motion.div>
 
@@ -131,21 +113,8 @@ const ProjectsSection = () => {
                     {/* Overlay Buttons */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <div className="flex space-x-4">
-                        <Button
-                          size="sm"
-                          className="glass-button cursor-hover"
-                          onClick={() => window.open(project.live, '_blank')}
-                        >
-                          Live Demo
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="glass-button cursor-hover"
-                          onClick={() => window.open(project.github, '_blank')}
-                        >
-                          GitHub
-                        </Button>
+                        
+                        
                       </div>
                     </div>
                   </div>
@@ -180,14 +149,7 @@ const ProjectsSection = () => {
                         className="flex-1 cursor-hover glow-effect"
                         onClick={() => window.open(project.live, '_blank')}
                       >
-                        View Project
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="flex-1 glass-button cursor-hover"
-                        onClick={() => window.open(project.github, '_blank')}
-                      >
-                        Source Code
+                        View Certificate
                       </Button>
                     </div>
                   </div>
@@ -197,22 +159,6 @@ const ProjectsSection = () => {
           ))}
         </motion.div>
 
-        {/* View More Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-12"
-        >
-          <Button
-            variant="outline"
-            size="lg"
-            className="px-8 py-4 glass-button font-semibold cursor-hover"
-          >
-            View All Projects
-          </Button>
-        </motion.div>
       </div>
     </section>
   );

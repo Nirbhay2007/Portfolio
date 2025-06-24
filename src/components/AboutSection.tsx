@@ -5,10 +5,10 @@ import { Card } from '@/components/ui/card';
 
 const AboutSection = () => {
   const stats = [
-    { number: '3+', label: 'Years Experience' },
-    { number: '50+', label: 'Projects Completed' },
-    { number: '100%', label: 'Client Satisfaction' },
-    { number: '24/7', label: 'Support Available' },
+    { number: '6+', label: 'Month Experience' },
+    { number: '5+', label: 'Projects Completed' },
+    { number: '4+', label: 'Skill Certificates' },
+    { number: '100%', label: 'Growth Focus' },
   ];
 
   const containerVariants = {
@@ -62,16 +62,17 @@ const AboutSection = () => {
                 variants={itemVariants}
                 className="text-lg text-muted-foreground leading-relaxed mb-6"
               >
-                I'm a passionate full-stack developer with a keen eye for design and a love for creating 
-                seamless user experiences. My journey in tech began 3 years ago, and since then, I've been 
-                dedicated to mastering the art of building beautiful, functional, and scalable applications.
+                I’m a B.Tech undergraduate specializing in Data Science and Artificial Intelligence/Machine Learning.  
+                With a strong interest in technology and innovation, I’m passionate about creating impactful digital solutions 
+                 From intuitive front-end interfaces to data-driven insights, I enjoy exploring how code and design come together to solve real-world problems.
+
               </motion.p>
               <motion.p
                 variants={itemVariants}
                 className="text-lg text-muted-foreground leading-relaxed"
               >
-                When I'm not coding, you can find me exploring new technologies, contributing to open-source 
-                projects, or sharing my knowledge with the developer community.
+                Currently focused on building my skills through hands-on projects, certifications, and internships,
+                 I aim to grow into a versatile developer and data enthusiast ready to contribute to the future of intelligent systems.
               </motion.p>
             </div>
 
@@ -103,9 +104,9 @@ const AboutSection = () => {
                   className="w-64 h-64 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 backdrop-blur-xl border border-white/10 flex items-center justify-center overflow-hidden"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face"
-                    alt="Profile"
-                    className="w-full h-full object-cover"
+                    src="/nirbhay.jpeg"
+                    alt="Nirbhay Garg"
+                    className="w-64 h-64 object-cover rounded-xl shadow-lg"
                   />
                 </motion.div>
 
@@ -113,7 +114,7 @@ const AboutSection = () => {
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-center mb-4">Tech Stack</h3>
                   <div className="flex flex-wrap justify-center gap-3">
-                    {['React', 'TypeScript', 'Node.js', 'Python', 'AWS', 'Docker'].map((tech) => (
+                    {['Python','CSS', 'Git', 'Tableau'].map((tech) => (
                       <motion.span
                         key={tech}
                         whileHover={{ scale: 1.1 }}

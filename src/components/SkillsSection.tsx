@@ -28,19 +28,19 @@ const SkillsSection = () => {
     {
       title: 'Frontend',
       icon: '🎨',
-      skills: ['React', 'Vue.js', 'TypeScript', 'Tailwind CSS', 'Three.js', 'Framer Motion'],
+      skills: ['HTML', 'CSS', 'JavaScript', 'React.js'],
       color: 'from-purple-500 to-pink-500'
     },
     {
       title: 'Backend',
       icon: '⚡',
-      skills: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'Redis', 'GraphQL'],
+      skills: ['Firebase', 'Python', 'Pandas', 'NumPy',],
       color: 'from-blue-500 to-cyan-500'
     },
     {
       title: 'Tools & Others',
       icon: '🛠️',
-      skills: ['Docker', 'AWS', 'Git', 'Figma', 'Jest', 'CI/CD'],
+      skills: ['GitHub', 'Tableau', 'Git', 'VS Code'],
       color: 'from-green-500 to-emerald-500'
     }
   ];
@@ -87,13 +87,13 @@ const SkillsSection = () => {
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold mb-6"
           >
-            Technologies I <span className="gradient-text">Master</span>
+            Technologies I'm <span className="gradient-text">Learning</span>
           </motion.h2>
           <motion.p
             variants={itemVariants}
             className="text-lg text-muted-foreground max-w-2xl mx-auto"
           >
-            A comprehensive toolkit of modern technologies and frameworks that I use to bring ideas to life
+            A growing toolkit of modern technologies and frameworks I'm exploring to turn ideas into reality.
           </motion.p>
         </motion.div>
 
@@ -163,12 +163,12 @@ const SkillsSection = () => {
           className="mt-16 grid md:grid-cols-2 gap-8"
         >
           <motion.div variants={itemVariants}>
-            <h3 className="text-xl font-bold mb-6">Proficiency Levels</h3>
+            <h3 className="text-xl font-bold mb-6">Current Learning Journey</h3>
             {[
-              { skill: 'JavaScript/TypeScript', level: 95 },
-              { skill: 'React/Vue.js', level: 90 },
-              { skill: 'Node.js/Python', level: 85 },
-              { skill: 'UI/UX Design', level: 80 },
+              { skill: 'Python', level: 43 },
+              { skill: 'Tableau', level: 37 },
+              { skill: 'HTML/CSS', level: 41 },
+              { skill: 'Git & GitHub', level: 58 },
             ].map((item, index) => (
               <div key={index} className="mb-4">
                 <div className="flex justify-between mb-2">
@@ -189,10 +189,10 @@ const SkillsSection = () => {
           
           <motion.div variants={itemVariants} className="flex items-center justify-center">
             <div className="glass-card p-8 text-center rounded-2xl">
-              <div className="text-6xl font-bold gradient-text mb-2">5+</div>
-              <div className="text-lg text-muted-foreground">Years of Experience</div>
-              <div className="text-4xl font-bold gradient-text mt-4 mb-2">100+</div>
-              <div className="text-lg text-muted-foreground">Technologies Explored</div>
+              <div className="text-6xl font-bold gradient-text mb-2">6+</div>
+              <div className="text-lg text-muted-foreground">Months of Experience</div>
+              <div className="text-5xl font-bold gradient-text mt-4 mb-2">9+</div>
+              <div className="text-lg text-muted-foreground">Tools Explored</div>
             </div>
           </motion.div>
         </motion.div>

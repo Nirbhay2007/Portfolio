@@ -93,14 +93,14 @@ const HeroSection = () => {
           className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
         >
           <span className="block">Hello, I'm</span>
-          <span className="gradient-text">Alex Johnson</span>
+          <span className="gradient-text">Nirbhay Garg</span>
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
           className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
         >
-          Full-Stack Developer & UI/UX Designer crafting digital experiences that inspire and engage
+          Pursuing a BTech in Data Science & AI/ML, focused on building scalable, real-world solutions through analytical thinking and technology.
         </motion.p>
 
         <motion.div
