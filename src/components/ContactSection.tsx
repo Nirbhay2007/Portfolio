@@ -22,7 +22,7 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('https://formspree.io/f/xkgbpwpp', {
+      const response = await fetch('https://formspree.io/f/xldnogod', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -72,8 +72,8 @@ const ContactSection = () => {
     {
       icon: '📧',
       label: 'Email',
-      value: 'nirbhaygarg11@gmail.com',
-      link: 'mailto:nirbhaygarg11@gmail.com'
+      value: 'contact@nirbhaygarg.com',
+      link: 'mailto:contact@nirbhaygarg.com'
     },
     {
       icon: '📱',
