@@ -165,8 +165,8 @@ const SkillsSection = () => {
           <motion.div variants={itemVariants}>
             <h3 className="text-xl font-bold mb-6">Current Learning Journey</h3>
             {[
-              { skill: 'Python', level: 43 },
-              { skill: 'Tableau', level: 37 },
+              { skill: 'Python', level: 45 },
+              { skill: 'Tableau', level: 31},
               { skill: 'HTML/CSS', level: 41 },
               { skill: 'Git & GitHub', level: 58 },
             ].map((item, index) => (
