@@ -112,7 +112,7 @@ const AboutSection = () => {
 
                 {/* Tech Stack Icons */}
                 <div className="space-y-4">
-                  <h3 className="text-xl font-semibold text-center mb-4">Tech Stack</h3>
+                  <h3 className="text-xl font-semibold text-center mb-4">Tech</h3>
                   <div className="flex flex-wrap justify-center gap-3">
                     {['Python','CSS', 'Git', 'Tableau'].map((tech) => (
                       <motion.span
