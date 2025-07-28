@@ -189,7 +189,7 @@ const SkillsSection = () => {
           
           <motion.div variants={itemVariants} className="flex items-center justify-center">
             <div className="glass-card p-8 text-center rounded-2xl">
-              <div className="text-6xl font-bold gradient-text mb-2">6+</div>
+              <div className="text-6xl font-bold gradient-text mb-2">7+</div>
               <div className="text-lg text-muted-foreground">Months of Experience</div>
               <div className="text-5xl font-bold gradient-text mt-4 mb-2">9+</div>
               <div className="text-lg text-muted-foreground">Tools Explored</div>
