@@ -168,7 +168,7 @@ const SkillsSection = () => {
               { skill: 'Python', level: 44 },
               { skill: 'Tableau', level: 32},
               { skill: 'HTML/CSS', level: 41 },
-              { skill: 'Git & GitHub', level: 60 },
+              { skill: 'Git & GitHub', level: 58 },
             ].map((item, index) => (
               <div key={index} className="mb-4">
                 <div className="flex justify-between mb-2">
