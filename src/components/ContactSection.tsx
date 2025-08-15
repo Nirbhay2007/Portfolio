@@ -72,8 +72,8 @@ const ContactSection = () => {
     {
       icon: '📧',
       label: 'Email',
-      value: 'contact@nirbhaygarg.com',
-      link: 'mailto:contact@nirbhaygarg.com'
+      value: 'nirbhaygarg11@gmail.com',
+      link: 'mailto:nirbhaygarg11@gmail.com'
     },
     {
       icon: '📱',
