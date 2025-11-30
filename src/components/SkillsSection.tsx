@@ -165,10 +165,10 @@ const SkillsSection = () => {
           <motion.div variants={itemVariants}>
             <h3 className="text-xl font-bold mb-6">Current Learning Journey</h3>
             {[
-              { skill: 'Python', level: 44 },
-              { skill: 'Tableau', level: 32},
-              { skill: 'HTML/CSS', level: 41 },
-              { skill: 'Git & GitHub', level: 58 },
+              { skill: 'Python', level: 79 },
+              { skill: 'C', level: 82},
+              { skill: 'HTML/CSS', level: 100 },
+              { skill: 'Git & GitHub', level: 98 },
             ].map((item, index) => (
               <div key={index} className="mb-4">
                 <div className="flex justify-between mb-2">
