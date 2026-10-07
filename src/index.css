@@ -1,111 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 263.4 70% 50.4%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 263.4 70% 50.4%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --radius: 0.75rem;
-    --sidebar-background: 222.2 84% 4.9%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 263.4 70% 50.4%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 217.2 32.6% 17.5%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-ring: 263.4 70% 50.4%;
+    --background: 224 28% 4.5%; /* #08090d */
+    --foreground: 214 32% 95%; /* #f1f3f7 */
+    --card: 224 24% 7%; /* #0e111a */
+    --card-foreground: 214 32% 95%;
+    --popover: 224 24% 7%;
+    --popover-foreground: 214 32% 95%;
+    --primary: 191 100% 48%; /* electric cyan #00e5ff */
+    --primary-foreground: 224 28% 4.5%;
+    --secondary: 222 22% 13%; /* #1a1f2c */
+    --secondary-foreground: 214 20% 88%;
+    --muted: 222 20% 11%;
+    --muted-foreground: 215 16% 60%; /* cool slate #8b99ac */
+    --accent: 191 100% 48%;
+    --accent-foreground: 224 28% 4.5%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 214 32% 95%;
+    --border: 222 20% 15%; /* #1c2230 */
+    --input: 222 20% 16%;
+    --ring: 191 100% 48%;
+    --radius: 0.625rem;
+    --sidebar-background: 224 28% 4.5%;
+    --sidebar-foreground: 214 32% 95%;
+    --sidebar-primary: 191 100% 48%;
+    --sidebar-primary-foreground: 224 28% 4.5%;
+    --sidebar-accent: 222 22% 13%;
+    --sidebar-accent-foreground: 214 20% 88%;
+    --sidebar-border: 222 20% 15%;
+    --sidebar-ring: 191 100% 48%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
+
+  html {
+    color-scheme: dark;
+  }
+
   body {
-    @apply bg-background text-foreground font-inter;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground font-sans antialiased overflow-x-hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    background-color: rgba(0, 229, 255, 0.2);
+    color: #38bdf8;
   }
 }
 
 @layer utilities {
-  .gradient-text {
-    @apply bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 bg-clip-text text-transparent;
+  .text-glow-cyan {
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
   }
-  
-  .glass-card {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+
+  .box-glow-cyan {
+    box-shadow: 0 0 25px -5px rgba(0, 229, 255, 0.15), 0 0 10px -5px rgba(0, 229, 255, 0.1);
   }
-  
-  .glass-button {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10;
+
+  .box-glow-emerald {
+    box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.15);
   }
-  
-  .premium-shadow {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  .tech-border {
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
-  
-  .glow-effect {
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+
+  .tech-border-accent {
+    border: 1px solid rgba(0, 229, 255, 0.3);
   }
-  
-  .cursor-hover {
-    cursor: none;
+
+  .tech-card {
+    background: linear-gradient(180deg, rgba(17, 21, 31, 0.75) 0%, rgba(11, 14, 21, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(12px);
   }
-  
-  .section-container {
-    @apply relative py-20 px-6;
-    min-height: 100vh;
+
+  .tech-card:hover {
+    border-color: rgba(0, 229, 255, 0.25);
   }
-  
-  .font-inter {
-    font-family: "Inter", sans-serif;
+
+  .tech-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .corner-brackets {
+    position: relative;
+  }
+
+  .corner-brackets::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid rgba(0, 229, 255, 0.6);
+    border-left: 1px solid rgba(0, 229, 255, 0.6);
+    pointer-events: none;
+  }
+
+  .corner-brackets::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 6px;
+    height: 6px;
+    border-bottom: 1px solid rgba(0, 229, 255, 0.6);
+    border-right: 1px solid rgba(0, 229, 255, 0.6);
+    pointer-events: none;
   }
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Custom scrollbar */
+/* Custom technical scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+  background: #08090d;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary));
-  border-radius: 4px;
+  background: #1e2536;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.8);
+  background: #00e5ff88;
+}
+
+/* Lenis smooth scroll recommended styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

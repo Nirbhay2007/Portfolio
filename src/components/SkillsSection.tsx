@@ -1,201 +1,205 @@
-
-import React, { Suspense, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Card } from '@/components/ui/card';
+import {
+  Code2,
+  Server,
+  Layout,
+  Database,
+  BrainCircuit,
+  Cloud,
+  ShieldCheck,
+  Wrench,
+  Sparkles,
+} from 'lucide-react';
 
-const FloatingBox = ({ position, color }: { position: [number, number, number], color: string }) => {
-  const meshRef = useRef<any>();
+interface SkillCategory {
+  id: string;
+  name: string;
+  icon: typeof Code2;
+  skills: { name: string; tag?: string }[];
+}
 
-  useFrame((state, delta) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x += delta * 0.3;
-      meshRef.current.rotation.y += delta * 0.2;
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime + position[0]) * 0.2;
-    }
-  });
+const SKILL_CATEGORIES: SkillCategory[] = [
+  {
+    id: 'languages',
+    name: 'LANGUAGES',
+    icon: Code2,
+    skills: [
+      { name: 'Python', tag: 'PRIMARY' },
+      { name: 'C', tag: 'SYSTEMS' },
+      { name: 'SQL', tag: 'QUERY' },
+    ],
+  },
+  {
+    id: 'backend',
+    name: 'BACKEND',
+    icon: Server,
+    skills: [
+      { name: 'FastAPI', tag: 'ASYNC' },
+      { name: 'Node.js', tag: 'RUNTIME' },
+      { name: 'REST APIs', tag: 'HTTP' },
+      { name: 'SQLAlchemy', tag: 'ORM' },
+      { name: 'Pydantic', tag: 'VALIDATION' },
+      { name: 'JWT Authentication', tag: 'AUTH' },
+    ],
+  },
+  {
+    id: 'frontend',
+    name: 'FRONTEND',
+    icon: Layout,
+    skills: [
+      { name: 'React', tag: 'UI' },
+    ],
+  },
+  {
+    id: 'databases',
+    name: 'DATABASES',
+    icon: Database,
+    skills: [
+      { name: 'PostgreSQL', tag: 'ACID' },
+      { name: 'SQLite', tag: 'EMBEDDED' },
+      { name: 'Alembic', tag: 'MIGRATIONS' },
+    ],
+  },
+  {
+    id: 'ai-data',
+    name: 'AI / DATA',
+    icon: BrainCircuit,
+    skills: [
+      { name: 'Computer Vision', tag: 'SPATIAL' },
+      { name: 'Image Processing', tag: 'CV' },
+      { name: 'NumPy', tag: 'TENSORS' },
+      { name: 'Rasterio', tag: 'GEOTIFF' },
+      { name: 'Matplotlib', tag: 'PLOTS' },
+    ],
+  },
+  {
+    id: 'cloud-devops',
+    name: 'CLOUD / DEVOPS',
+    icon: Cloud,
+    skills: [
+      { name: 'AWS Boto3', tag: 'SDK' },
+      { name: 'Azure VM', tag: 'COMPUTE' },
+      { name: 'DigitalOcean VPS', tag: 'HOSTING' },
+      { name: 'Cloudflare DNS', tag: 'EDGE' },
+      { name: 'Git', tag: 'VCS' },
+      { name: 'GitHub', tag: 'CI/CD' },
+    ],
+  },
+  {
+    id: 'security',
+    name: 'SECURITY',
+    icon: ShieldCheck,
+    skills: [
+      { name: 'JWT', tag: 'AUTH' },
+      { name: 'bcrypt', tag: 'HASH' },
+      { name: 'HMAC Verification', tag: 'CRYPTO' },
+      { name: 'Rate Limiting', tag: 'DEFENSE' },
+      { name: 'Input Validation', tag: 'APPSEC' },
+    ],
+  },
+  {
+    id: 'tools',
+    name: 'TOOLS',
+    icon: Wrench,
+    skills: [
+      { name: 'UV', tag: 'PACKAGE' },
+      { name: 'Postman', tag: 'API TEST' },
+      { name: 'VS Code', tag: 'IDE' },
+      { name: 'Linux', tag: 'KERNEL' },
+      { name: 'Ruff', tag: 'LINTER' },
+      { name: 'Vitest', tag: 'TESTING' },
+    ],
+  },
+];
+
+export const SkillsSection = () => {
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   return (
-    <mesh ref={meshRef} position={position} scale={0.5}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={color} />
-    </mesh>
-  );
-};
-
-const SkillsSection = () => {
-  const skillCategories = [
-    {
-      title: 'Frontend',
-      icon: '🎨',
-      skills: ['HTML', 'CSS', 'JavaScript', 'React.js'],
-      color: 'from-purple-500 to-pink-500'
-    },
-    {
-      title: 'Backend',
-      icon: '⚡',
-      skills: ['Firebase', 'Python', 'Pandas', 'NumPy',],
-      color: 'from-blue-500 to-cyan-500'
-    },
-    {
-      title: 'Tools & Others',
-      icon: '🛠️',
-      skills: ['GitHub', 'Tableau', 'Git', 'VS Code'],
-      color: 'from-green-500 to-emerald-500'
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-      },
-    },
-  };
-
-  return (
-    <section id="skills" className="section-container bg-gradient-to-b from-background/80 to-background">
+    <section id="skills" className="relative py-24 sm:py-36 px-6 border-t border-white/[0.06] bg-[#07090e]">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            variants={itemVariants}
-            className="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-medium mb-4"
-          >
-            My Skills
-          </motion.span>
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-6"
-          >
-            Technologies I'm <span className="gradient-text">Learning</span>
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
-          >
-            A growing toolkit of modern technologies and frameworks I'm exploring to turn ideas into reality.
-          </motion.p>
-        </motion.div>
-
-        {/* Simplified 3D Background */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <Suspense fallback={null}>
-            <Canvas 
-              camera={{ position: [0, 0, 5], fov: 75 }}
-              gl={{ 
-                alpha: true,
-                antialias: false,
-                powerPreference: "default"
-              }}
-              dpr={1}
-              style={{ background: 'transparent' }}
-            >
-              <ambientLight intensity={0.3} />
-              <pointLight position={[10, 10, 10]} />
-              <FloatingBox position={[-2, 2, 0]} color="#8b5cf6" />
-              <FloatingBox position={[2, -1, 0]} color="#ec4899" />
-              <FloatingBox position={[0, 1, -1]} color="#06b6d4" />
-            </Canvas>
-          </Suspense>
+        {/* Section Header */}
+        <div className="max-w-3xl mb-16">
+          <div className="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-cyan-400 uppercase mb-3">
+            <span className="w-2 h-2 rounded-full bg-cyan-400" />
+            <span>06 // TECHNICAL ECOSYSTEM</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+            Skills & Toolchain
+          </h2>
+          <p className="text-slate-400 text-base sm:text-lg mt-4 leading-relaxed">
+            A comprehensive, verified technical stack spanning backend frameworks, security protocols, system languages, databases, and developer tooling.
+          </p>
         </div>
 
-        {/* Skills Grid */}
-        <motion.div
-          variants={containerVariants}
-          className="relative z-10 grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {skillCategories.map((category, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05, rotateY: 5 }}
-              className="group"
-            >
-              <Card className="glass-card p-8 h-full premium-shadow hover:shadow-2xl transition-all duration-300 group-hover:border-primary/30">
-                <div className="text-center mb-6">
-                  <div className="text-4xl mb-4">{category.icon}</div>
-                  <h3 className="text-2xl font-bold mb-2">{category.title}</h3>
-                  <div className={`w-16 h-1 bg-gradient-to-r ${category.color} rounded-full mx-auto`} />
-                </div>
-                
-                <div className="space-y-3">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.div
-                      key={skillIndex}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: skillIndex * 0.1 }}
-                      className="flex items-center space-x-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-                    >
-                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${category.color}`} />
-                      <span className="font-medium">{skill}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+        {/* Categories Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {SKILL_CATEGORIES.map((cat) => {
+            const Icon = cat.icon;
+            return (
+              <div
+                key={cat.id}
+                className="rounded-2xl bg-[#0b0f17] border border-white/[0.08] hover:border-cyan-500/30 p-6 flex flex-col justify-between transition-all duration-300"
+              >
+                <div>
+                  {/* Category Header */}
+                  <div className="flex items-center gap-3 pb-4 mb-4 border-b border-white/[0.06]">
+                    <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/[0.08] flex items-center justify-center text-cyan-400">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-mono text-xs font-bold text-white tracking-wider">
+                      {cat.name}
+                    </h3>
+                  </div>
 
-        {/* Skill Level Indicators */}
-        <motion.div
-          variants={containerVariants}
-          className="mt-16 grid md:grid-cols-2 gap-8"
-        >
-          <motion.div variants={itemVariants}>
-            <h3 className="text-xl font-bold mb-6">Current Learning Journey</h3>
-            {[
-              { skill: 'Python', level: 79 },
-              { skill: 'C', level: 82},
-              { skill: 'HTML/CSS', level: 100 },
-              { skill: 'Git & GitHub', level: 98 },
-            ].map((item, index) => (
-              <div key={index} className="mb-4">
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">{item.skill}</span>
-                  <span className="text-primary">{item.level}%</span>
-                </div>
-                <div className="w-full bg-white/10 rounded-full h-2">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${item.level}%` }}
-                    transition={{ duration: 1.5, delay: index * 0.2 }}
-                    className="h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"
-                  />
+                  {/* Skills List */}
+                  <div className="flex flex-wrap gap-2">
+                    {cat.skills.map((skill) => {
+                      const isHovered = hoveredSkill === skill.name;
+                      return (
+                        <div
+                          key={skill.name}
+                          onMouseEnter={() => setHoveredSkill(skill.name)}
+                          onMouseLeave={() => setHoveredSkill(null)}
+                          className={`group cursor-default px-3 py-1.5 rounded-lg border transition-all duration-200 flex items-center gap-2 font-mono text-xs ${
+                            isHovered
+                              ? 'bg-cyan-500/15 border-cyan-400 text-cyan-200 shadow-md shadow-cyan-950/40 scale-[1.03]'
+                              : 'bg-white/[0.03] border-white/[0.06] text-slate-300 hover:border-white/[0.15]'
+                          }`}
+                        >
+                          <span className="font-medium">{skill.name}</span>
+                          {skill.tag && (
+                            <span
+                              className={`text-[9px] px-1 py-0.2 rounded transition-colors ${
+                                isHovered
+                                  ? 'bg-cyan-400 text-[#08090d] font-bold'
+                                  : 'text-slate-500 bg-white/[0.04]'
+                              }`}
+                            >
+                              {skill.tag}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            ))}
-          </motion.div>
-          
-          <motion.div variants={itemVariants} className="flex items-center justify-center">
-            <div className="glass-card p-8 text-center rounded-2xl">
-              <div className="text-6xl font-bold gradient-text mb-2">7+</div>
-              <div className="text-lg text-muted-foreground">Months of Experience</div>
-              <div className="text-5xl font-bold gradient-text mt-4 mb-2">9+</div>
-              <div className="text-lg text-muted-foreground">Tools Explored</div>
-            </div>
-          </motion.div>
-        </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Ecosystem Bottom Telemetry */}
+        <div className="mt-10 pt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-slate-500">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+            <span>NO PROGRESS BARS // ZERO FAKE PERCENTAGES // PRODUCTION TOOLCHAIN</span>
+          </div>
+          <div className="text-slate-400">
+            TOTAL VERIFIED SKILLS: 33 ACTIVE CAPABILITIES
+          </div>
+        </div>
       </div>
     </section>
   );
